@@ -6,13 +6,13 @@ public class InvoiceSummary {
 	private final int numofRides;
 	private final double totalFare;
 	private final double averageFare;
-
+	
     public InvoiceSummary(int numofRides,double totalFare,double averageFare ) {
     	this.numofRides=numofRides;
     	this.totalFare = totalFare;
     	this.averageFare= averageFare;
     }
-
+    
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

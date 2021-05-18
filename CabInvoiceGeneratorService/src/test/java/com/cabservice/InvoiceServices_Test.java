@@ -75,5 +75,25 @@ public class InvoiceServices_Test {
 		InvoiceSummary expected = new InvoiceSummary(3, 570, 190);
 		assertEquals(expected, invoiceSummary);		
 	}
+	
+	@Test
+	public void givenChoice_shouldReturn_TotalFare() {
+		String choice = "Normal";
+		double distance = 20.0;
+		int minute = 15;
+		double fare = invoiceGenerator.calculateFare(choice,distance, minute);
+		assertEquals(215, fare,  0.0);
+			
+	}
+	
+	@Test
+	public void givenChoice_shouldReturn_TotalFareforGivenChoice() {
+		String choice = "Premium";
+		double distance = 10.0;
+		int minute = 5;
+		double fare = invoiceGenerator.calculateFare(choice,distance, minute);
+		assertEquals(160, fare,  0.0);
+			
+	}
 
 }

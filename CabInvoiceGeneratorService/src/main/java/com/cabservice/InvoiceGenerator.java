@@ -1,5 +1,8 @@
 package com.cabservice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InvoiceGenerator {
 
 	private static final int costPerMinute =1;
@@ -14,6 +17,24 @@ public class InvoiceGenerator {
 		}else if(distance < 0.5 && minute <= 2) {
 			return minfare;
 		}
+		return totalfare;
+	}
+	
+	public double calculateFare(String choice, double distance, int minute) {
+		if(choice.equalsIgnoreCase("Normal")) {
+			int costPerMinute =1;
+			double minCostPerKm =10;
+			double minfare = 5;
+			double totalfare = (distance * minCostPerKm) + (minute * costPerMinute);
+			return totalfare;
+		}else if(choice.equalsIgnoreCase("Premium")) {
+			int costPerMinute =2;
+			double minCostPerKm =15;
+			double minfare = 20;
+			double totalfare = (distance * minCostPerKm) + (minute * costPerMinute);
+			return totalfare;
+		}
+		double totalfare = (distance * minCostPerKm) + (minute * costPerMinute);
 		return totalfare;
 	}
 
@@ -34,4 +55,6 @@ public class InvoiceGenerator {
 		 averageFare = totalfare/ride.length;
 		return new InvoiceSummary(ride.length, totalfare, averageFare);
 	}
+	
+	
 }
