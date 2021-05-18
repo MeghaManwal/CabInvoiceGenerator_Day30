@@ -17,4 +17,11 @@ public class InvoiceGenerator {
 		return totalfare;
 	}
 
+	public double calculateFare(Ride[] ride) {
+		double totalfare = 0;
+		for(Ride rides: ride) {
+			totalfare += this.calculateFare(rides.distance, rides.minute);	
+		}
+		return totalfare;
+	}
 }
