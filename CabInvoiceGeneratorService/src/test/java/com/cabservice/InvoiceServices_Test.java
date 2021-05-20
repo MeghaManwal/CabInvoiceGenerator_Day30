@@ -22,6 +22,7 @@ public class InvoiceServices_Test {
 		assertEquals(215, fare,  0.0);	
 	}
 	
+	
 	@Test
 	public void givenDistanceAndMinute_shouldReturn_minFare() {
 		double distance = 0.3;
@@ -29,6 +30,7 @@ public class InvoiceServices_Test {
 		double fare = invoiceGenerator.calculateFare(distance, minute);
 		assertEquals(5, fare,  0.0);	
 	}
+	
 	
 	@Test
 	public void givenDistanceAndMinute_shouldReturn_totalFare_forMultipleRides() {
@@ -41,6 +43,7 @@ public class InvoiceServices_Test {
 		assertEquals(273, fare,  0.0);		
 	}
 	
+	
 	@Test
 	public void givenDistanceAndMinute_shouldReturntotalFare_forMultipleRides() {
 		Ride [] ride = {
@@ -51,6 +54,7 @@ public class InvoiceServices_Test {
 		double fare = invoiceGenerator.calculateFare(ride);
 		assertEquals(571, fare,  0.0);		
 	}
+	
 	
 	@Test
 	public void givenMultipleRides_shouldReturn_invoiceSummary() {
@@ -64,6 +68,7 @@ public class InvoiceServices_Test {
 		assertEquals(expected, invoiceSummary);		
 	}
 	
+	
 	@Test
 	public void givenMultipleRides_shouldReturn_InvoiceSummary() {
 		Ride [] ride = {
@@ -76,6 +81,7 @@ public class InvoiceServices_Test {
 		assertEquals(expected, invoiceSummary);		
 	}
 	
+	
 	@Test
 	public void givenChoice_shouldReturn_TotalFare() {
 		String choice = "Normal";
@@ -86,6 +92,7 @@ public class InvoiceServices_Test {
 			
 	}
 	
+	
 	@Test
 	public void givenChoice_shouldReturn_TotalFareforGivenChoice() {
 		String choice = "Premium";
@@ -95,5 +102,29 @@ public class InvoiceServices_Test {
 		assertEquals(160, fare,  0.0);
 			
 	}
-
+	
+	@Test
+	public void givenUserId_shouldReturn_InvoiceSummary() throws InvalidInputException {
+		String user ="U01";
+		InvoiceRecords invoicerecords = invoiceGenerator.findInvoice(user);
+		InvoiceRecords expected = new InvoiceRecords("U01",3,363,121);
+		assertEquals(expected, invoicerecords);	
+	}
+	
+	@Test
+	public void givenUserId_shouldreturn_InvoiceSummary() throws InvalidInputException {
+		String user ="U04";
+		InvoiceRecords invoicerecords = invoiceGenerator.findInvoice(user);
+		InvoiceRecords expected = new InvoiceRecords("U04",8,480,60);
+		assertEquals(expected, invoicerecords);	
+	}
+	
+	@Test
+	public void givenUserId_shouldReturn_InvalidInputException() throws InvalidInputException {
+		String user =" ";
+		InvoiceRecords invoicerecords = invoiceGenerator.findInvoice(user);
+		assertEquals(null, invoicerecords);	
+	}
+	
+	
 }
