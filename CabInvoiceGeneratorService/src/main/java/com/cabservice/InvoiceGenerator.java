@@ -15,7 +15,7 @@ public class InvoiceGenerator {
 		
 		if(distance < 1.0 && minute <= 5) {
 			return totalfare;
-		}else if(distance < 0.5 && minute <= 2) {
+		}else if(distance < 0.5 || minute <= 2) {
 			return minfare;
 		}
 		return totalfare;
@@ -56,19 +56,20 @@ public class InvoiceGenerator {
 			double totalfare = (distance * minCostPerKm) + (minute * costPerMinute);
 			return totalfare;
 		}
-		double totalfare = (distance * minCostPerKm) + (minute * costPerMinute);
+		double totalfare = 0.0;
 		return totalfare;
 	}
 	
 
     public InvoiceRecords findInvoice(String userId) throws InvalidInputException {
-		try {
+		
     	List<InvoiceRecords> list = new ArrayList<>();
 		list.add(new InvoiceRecords("U01",3,363,121));
 		list.add(new InvoiceRecords("U02",2,340,170));
 		list.add(new InvoiceRecords("U03",4,208,52));
 		list.add(new InvoiceRecords("U04",8,480,60));
 		
+		try {
 		InvoiceRecords user = null;
 		  for (int i = 0; i < list.size(); i++) {
 			if (userId.equals(list.get(i).getUserId())) {

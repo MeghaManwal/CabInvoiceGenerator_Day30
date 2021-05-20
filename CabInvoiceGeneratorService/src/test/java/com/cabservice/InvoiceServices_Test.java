@@ -22,9 +22,17 @@ public class InvoiceServices_Test {
 		assertEquals(215, fare,  0.0);	
 	}
 	
-	
 	@Test
 	public void givenDistanceAndMinute_shouldReturn_minFare() {
+		double distance = 0.2 ;
+		int minute = 10;
+		double fare = invoiceGenerator.calculateFare(distance, minute);
+		assertEquals(5, fare,  0.0);	
+	}
+	
+
+	@Test
+	public void givenDistanceAndMinute_shouldReturn_defaultFare() {
 		double distance = 0.3;
 		int minute = 2;
 		double fare = invoiceGenerator.calculateFare(distance, minute);
@@ -88,8 +96,7 @@ public class InvoiceServices_Test {
 		double distance = 20.0;
 		int minute = 15;
 		double fare = invoiceGenerator.calculateFare(choice,distance, minute);
-		assertEquals(215, fare,  0.0);
-			
+		assertEquals(215, fare,  0.0);		
 	}
 	
 	
@@ -99,9 +106,19 @@ public class InvoiceServices_Test {
 		double distance = 10.0;
 		int minute = 5;
 		double fare = invoiceGenerator.calculateFare(choice,distance, minute);
-		assertEquals(160, fare,  0.0);
-			
+		assertEquals(160, fare,  0.0);		
 	}
+	
+
+	@Test
+	public void givenNullChoice_shouldReturn_TotalFareforGivenChoice() {
+		String choice = " ";
+		double distance = 10.0;
+		int minute = 5;
+		double fare = invoiceGenerator.calculateFare(choice,distance, minute);
+		assertEquals(0, fare,  0.0);		
+	}
+	
 	
 	@Test
 	public void givenUserId_shouldReturn_InvoiceSummary() throws InvalidInputException {
@@ -111,6 +128,7 @@ public class InvoiceServices_Test {
 		assertEquals(expected, invoicerecords);	
 	}
 	
+	
 	@Test
 	public void givenUserId_shouldreturn_InvoiceSummary() throws InvalidInputException {
 		String user ="U04";
@@ -119,12 +137,12 @@ public class InvoiceServices_Test {
 		assertEquals(expected, invoicerecords);	
 	}
 	
+	
 	@Test
-	public void givenUserId_shouldReturn_InvalidInputException() throws InvalidInputException {
-		String user =" ";
+	public void givenWrongUserId_shouldReturn_nullRecords() throws InvalidInputException {
+		String user ="U08 ";
 		InvoiceRecords invoicerecords = invoiceGenerator.findInvoice(user);
 		assertEquals(null, invoicerecords);	
 	}
-	
 	
 }
