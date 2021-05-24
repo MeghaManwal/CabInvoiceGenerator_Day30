@@ -74,10 +74,7 @@ public class InvoiceGenerator {
 		  for (int i = 0; i < list.size(); i++) {
 			if (userId.equals(list.get(i).getUserId())) {
 				user = list.get(i);
-				user.getNumofRides();
-				user.getTotalFare();
-				user.getAverageFare();
-			    break;
+			        break;
 			 } 
 		   }
 		return user;
